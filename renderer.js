@@ -8,8 +8,7 @@ document.getElementById('start').addEventListener('click', async () => {
   const notify = document.getElementById('notify').checked;
 
   selectedFolder = await ipcRenderer.invoke('select-folder');
-
-  if (!selectedFolder) return; // User canceled
+  if (!selectedFolder) return;
 
   ipcRenderer.send('start-capturing', {
     interval,
@@ -23,7 +22,7 @@ document.getElementById('stop').addEventListener('click', () => {
   ipcRenderer.send('stop-capturing');
 });
 
-// Show toast message when save the screenshot in the selected folder
+// Show toast message
 ipcRenderer.on('show-toast', (event, message) => {
   const toast = document.createElement('div');
   toast.className = 'toast';
@@ -36,7 +35,7 @@ ipcRenderer.on('show-toast', (event, message) => {
   }, 2500);
 });
 
-// Container to hold Captured Screenshot
+// Add screenshot to gallery
 ipcRenderer.on('screenshot-saved', (event, filePath) => {
   const gallery = document.getElementById('screenshot-gallery');
 
@@ -47,3 +46,28 @@ ipcRenderer.on('screenshot-saved', (event, filePath) => {
 
   gallery.prepend(img);
 });
+
+// Full image preview on click
+document.getElementById('screenshot-gallery').addEventListener('click', (e) => {
+  if (e.target.tagName === 'IMG' && e.target.classList.contains('screenshot-thumb')) {
+    showFullImage(e.target.src);
+  }
+});
+
+function showFullImage(src) {
+  const overlay = document.createElement('div');
+  overlay.className = 'image-overlay';
+
+  const img = document.createElement('img');
+  img.src = src;
+  img.className = 'full-image';
+
+  const closeBtn = document.createElement('span');
+  closeBtn.className = 'close-btn';
+  closeBtn.innerText = '×';
+  closeBtn.onclick = () => overlay.remove();
+
+  overlay.appendChild(img);
+  overlay.appendChild(closeBtn);
+  document.body.appendChild(overlay);
+}
