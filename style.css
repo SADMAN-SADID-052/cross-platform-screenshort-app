@@ -76,3 +76,23 @@ button#stop {
 button:hover {
   opacity: 0.9;
 }
+
+.toast {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  background-color: #0ea5e9;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  animation: fadeInOut 3s ease-in-out;
+  font-size: 0.95rem;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateY(20px); }
+  10% { opacity: 1; transform: translateY(0); }
+  90% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(20px); }
+}

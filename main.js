@@ -1,5 +1,5 @@
 
-const { app, BrowserWindow, ipcMain, Tray, Menu, Notification } = require('electron');
+const { app, BrowserWindow, ipcMain, Tray, Menu, dialog } = require('electron');
 const path = require('path');
 const fs = require('fs');
 const screenshot = require('screenshot-desktop');
@@ -24,13 +24,17 @@ function createWindow() {
 app.whenReady().then(() => {
   createWindow();
 
-  tray = new Tray(path.join(__dirname, 'icon.png'));
-  const contextMenu = Menu.buildFromTemplate([
-    { label: 'Show App', click: () => mainWindow.show() },
-    { label: 'Quit', click: () => app.quit() }
-  ]);
-  tray.setToolTip('Screenshot App');
-  tray.setContextMenu(contextMenu);
+  try {
+    tray = new Tray(path.join(__dirname, 'icon.png'));
+    const contextMenu = Menu.buildFromTemplate([
+      { label: 'Show App', click: () => mainWindow.show() },
+      { label: 'Quit', click: () => app.quit() }
+    ]);
+    tray.setToolTip('Screenshot App');
+    tray.setContextMenu(contextMenu);
+  } catch (error) {
+    console.warn('Tray icon load failed:', error.message);
+  }
 
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) createWindow();
@@ -39,6 +43,13 @@ app.whenReady().then(() => {
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit();
+});
+
+ipcMain.handle('select-folder', async () => {
+  const result = await dialog.showOpenDialog({
+    properties: ['openDirectory']
+  });
+  return result.canceled ? null : result.filePaths[0];
 });
 
 ipcMain.on('start-capturing', (event, config) => {
@@ -56,8 +67,9 @@ ipcMain.on('start-capturing', (event, config) => {
             console.error('File write error:', err);
             return;
           }
+          // Send custom toast trigger to renderer
           if (config.notify) {
-            new Notification({ title: 'Screenshot Taken', body: filename }).show();
+            mainWindow.webContents.send('show-toast', `Saved: ${filename}`);
           }
         });
       })
