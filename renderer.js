@@ -35,3 +35,15 @@ ipcRenderer.on('show-toast', (event, message) => {
     setTimeout(() => toast.remove(), 500);
   }, 2500);
 });
+
+// Container to hold Captured Screenshot
+ipcRenderer.on('screenshot-saved', (event, filePath) => {
+  const gallery = document.getElementById('screenshot-gallery');
+
+  const img = document.createElement('img');
+  img.src = `file://${filePath}`;
+  img.alt = 'Screenshot';
+  img.className = 'screenshot-thumb';
+
+  gallery.prepend(img);
+});

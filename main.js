@@ -1,4 +1,3 @@
-
 const { app, BrowserWindow, ipcMain, Tray, Menu, dialog } = require('electron');
 const path = require('path');
 const fs = require('fs');
@@ -67,10 +66,14 @@ ipcMain.on('start-capturing', (event, config) => {
             console.error('File write error:', err);
             return;
           }
-          // Send custom toast trigger to renderer
+
+          // ✅ Send toast notification
           if (config.notify) {
             mainWindow.webContents.send('show-toast', `Saved: ${filename}`);
           }
+
+          // ✅ Send path for preview
+          mainWindow.webContents.send('screenshot-saved', filePath);
         });
       })
       .catch((err) => console.error('Screenshot error:', err));
