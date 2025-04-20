@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Screenshot App</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>📸 Screenshot App</h1>
+
+    <div class="form-group">
+      <label>⏱ Interval (seconds)</label>
+      <input type="number" id="interval" min="1" value="10" />
+    </div>
+
+    <div class="form-group">
+      <label>🖼 Format</label>
+      <select id="format">
+        <option value="png">PNG</option>
+        <option value="jpg">JPEG</option>
+      </select>
+    </div>
+
+    <div class="form-group checkbox">
+      <input type="checkbox" id="notify" checked />
+      <label for="notify">Show notifications</label>
+    </div>
+
+    <div class="buttons">
+      <button id="start">▶ Start Capturing</button>
+      <button id="stop">⏹ Stop Capturing</button>
+    </div>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>
