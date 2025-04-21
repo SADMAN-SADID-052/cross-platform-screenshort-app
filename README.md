@@ -10,8 +10,8 @@ A lightweight Electron.js desktop application that automatically captures full-s
 git clone https://github.com/your-username/screenshot-app.git
 ### 2. Run the app 
 cd screenshot-app
-npm install 
-npm start (for run the app)
+### npm install 
+### npm start (for run the app)
 
 Make sure you have Node.js installed
 
