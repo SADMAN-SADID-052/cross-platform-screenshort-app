@@ -9,9 +9,8 @@ A lightweight Electron.js desktop application that automatically captures full-s
 
 git clone https://github.com/your-username/screenshot-app.git
 cd screenshot-app
-npm install
-# Run the app
-npm start
+npm install 
+npm start (for run the app)
 
 Make sure you have Node.js installed
 
@@ -34,13 +33,13 @@ Make sure you have Node.js installed
 - ✅ Custom time intervals (in seconds)
 
 - ✅ Select folder to save screenshots
-- 
+
 - ✅ Image format selection (JPG / PNG)
-- 
+  
 - ✅ Optional toast notifications after capture
-- 
+  
 - ✅ Countdown preview on the start button
-- 
+  
 - ✅ Screenshot gallery with full-image view on click
-- 
+  
 - ✅ System tray integration with Show/Quit options
