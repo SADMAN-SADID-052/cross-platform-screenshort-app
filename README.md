@@ -5,6 +5,10 @@ A lightweight Electron.js desktop application that automatically captures full-s
 
 ## 📦 Setup & Installation Instructions
 
+To clone and run this repository you'll need Git and Node.js  installed on your computer. From your command line:
+
+
+
 ### 1. Clone the Repository
 
 git clone https://github.com/your-username/screenshot-app.git
@@ -15,7 +19,7 @@ npm install
 ### 4. Run the app
 npm start
 
-Make sure you have Node.js installed
+
 
 ## Usage Guide
 - Launch the app using npm start.
