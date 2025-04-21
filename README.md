@@ -8,10 +8,12 @@ A lightweight Electron.js desktop application that automatically captures full-s
 ### 1. Clone the Repository
 
 git clone https://github.com/your-username/screenshot-app.git
-### 2. Run the app 
+### 2. Go into the repository
 cd screenshot-app
-### npm install 
-### npm start (for run the app)
+### 3. Install dependencies
+npm install 
+### 4. Run the app
+npm start
 
 Make sure you have Node.js installed
 
