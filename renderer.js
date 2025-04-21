@@ -5,7 +5,7 @@ let selectedFolder = null;
 document.getElementById('start').addEventListener('click', async () => {
   const interval = parseInt(document.getElementById('interval').value);
   const format = document.getElementById('format').value;
-  const notify = document.getElementById('notify').checked;
+
 
   selectedFolder = await ipcRenderer.invoke('select-folder');
   if (!selectedFolder) return;
@@ -13,7 +13,6 @@ document.getElementById('start').addEventListener('click', async () => {
   ipcRenderer.send('start-capturing', {
     interval,
     format,
-    notify,
     folder: selectedFolder,
   });
 });
