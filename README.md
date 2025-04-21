@@ -16,7 +16,7 @@ npm start
 
 Make sure you have Node.js installed
 
-## 🛠️ Usage Guide
+## Usage Guide
 - Launch the app using npm start.
 
 - Set your preferred interval (in seconds) for taking screenshots.
@@ -29,7 +29,7 @@ Make sure you have Node.js installed
 
 - Use the system tray icon to hide or quit the app.
 
-## ✨ Feature List
+## Feature List
 - ✅ Full-screen screenshot capturing
 
 - ✅ Custom time intervals (in seconds)
